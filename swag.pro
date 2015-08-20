@@ -8,7 +8,8 @@ LIBS += -lsfml-system -lsfml-window -lsfml-graphics -lz
 
 SOURCES += main.cpp \
     game.cpp \
-    maingame.cpp
+    maingame.cpp \
+    player.cpp
 
 INCLUDEPATH += $$PWD/include
 SOURCES += $$PWD/src/*.cpp
@@ -16,7 +17,8 @@ SOURCES += $$PWD/src/*.cpp
 HEADERS += \
     maingame.hpp \
     game.hpp \
-    gamestate.hpp
+    gamestate.hpp \
+    player.hpp
 
 include(deployment.pri)
 qtcAddDeployment()

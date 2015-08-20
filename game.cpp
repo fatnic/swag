@@ -41,7 +41,7 @@ void Game::gameLoop()
         if(peekState() == nullptr) continue;
         peekState()->handleInput();
         peekState()->update(dT);
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color(64,64,64));
         peekState()->draw();
         window.display();
     }
