@@ -18,18 +18,20 @@ Player::Player()
     this->setPosition(400, 300);
     this->setScale(0.5f, 0.5f);
 
-    a_walking.addFrame(1.f, sf::IntRect(0,   0, 80, 51));
-    a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51));
-    a_walking.addFrame(1.f, sf::IntRect(160, 0, 80, 51));
-    a_walking.addFrame(1.f, sf::IntRect(240, 0, 80, 51));
-    a_walking.addFrame(1.f, sf::IntRect(320, 0, 80, 51));
-    a_walking.addFrame(1.f, sf::IntRect(400, 0, 80, 51));
+    a_walking.addFrame(1.f, sf::IntRect(0,   0, 80, 51)); // 1
+    a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51)); // 2
+    a_walking.addFrame(1.f, sf::IntRect(160, 0, 80, 51)); // 3
+    a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51)); // 2
+    a_walking.addFrame(1.f, sf::IntRect(240, 0, 80, 51)); // 4
+    a_walking.addFrame(1.f, sf::IntRect(320, 0, 80, 51)); // 5
+    a_walking.addFrame(1.f, sf::IntRect(400, 0, 80, 51)); // 6
+    a_walking.addFrame(1.f, sf::IntRect(320, 0, 80, 51)); // 5
     m_animator.addAnimation("walking", a_walking, sf::seconds(1.f));
 
     a_standing.addFrame(1.f, sf::IntRect(0,0,80,51));
     m_animator.addAnimation("standing", a_standing, sf::seconds(1.f));
 
-    m_animator.playAnimation("walking");
+    m_animator.playAnimation("standing");
 }
 
 void Player::handleInput()
@@ -43,6 +45,7 @@ void Player::handleInput()
 void Player::update(sf::Time dT)
 {
     sf::Vector2f movement(0.f, 0.f);
+
     if(m_movingUp)
         movement.y -= m_playerSpeed;
     if(m_movingDown)
@@ -56,13 +59,11 @@ void Player::update(sf::Time dT)
     {
         rotate(movement);
         this->move(movement * dT.asSeconds());
-        m_animator.playAnimation("walking");
+        m_animator.playAnimation("walking", true); // ... but don't call every update()???
     }
-    else
-        m_animator.playAnimation("walking");
 
-    m_animator.animate(*this);
     m_animator.update(dT);
+    m_animator.animate(*this);
 }
 
 void Player::rotate(sf::Vector2f destination)
@@ -70,4 +71,3 @@ void Player::rotate(sf::Vector2f destination)
         float angle = std::atan2(destination.y, destination.x);
         this->setRotation((angle * 180/3.142) + 90);
 }
-
