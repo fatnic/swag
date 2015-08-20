@@ -1,9 +1,17 @@
 #include "player.hpp"
 #include <math.h>
+#include <iostream>
 
 Player::Player()
-    : m_playerSpeed(200.f)
+    : m_playerSpeed(100.f)
+    , m_texture()
 {
+    m_texture.loadFromFile("assets/player1.png");
+
+    this->setTexture(m_texture);
+    this->setOrigin(this->getGlobalBounds().width / 2, this->getGlobalBounds().height / 2);
+    this->setPosition(400, 300);
+    this->setScale(0.5f, 0.5f);
 }
 
 void Player::handleInput()

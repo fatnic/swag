@@ -1,6 +1,6 @@
-#include <stack>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <stack>
 
 #include "game.hpp"
 #include "gamestate.hpp"

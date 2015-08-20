@@ -15,4 +15,5 @@ private:
     bool m_movingDown;
     bool m_movingLeft;
     bool m_movingRight;
+    sf::Texture m_texture;
 };
