@@ -6,16 +6,12 @@ Player::Player()
 {
 }
 
-void Player::handleInput(sf::Keyboard::Key key, bool isPressed)
+void Player::handleInput()
 {
-    if(key == sf::Keyboard::W)
-        m_movingUp = isPressed;
-    if(key == sf::Keyboard::S)
-        m_movingDown = isPressed;
-    if(key == sf::Keyboard::A)
-        m_movingLeft = isPressed;
-    if(key == sf::Keyboard::D)
-        m_movingRight = isPressed;
+    m_movingUp    = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
+    m_movingDown  = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+    m_movingLeft  = sf::Keyboard::isKeyPressed(sf::Keyboard::A);
+    m_movingRight = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 }
 
 void Player::update(sf::Time dT)

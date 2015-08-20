@@ -6,7 +6,7 @@ class Player : public sf::Sprite
 {
 public:
     Player();
-    void handleInput(sf::Keyboard::Key key, bool isPressed);
+    void handleInput();
     void update(sf::Time dT);
 private:
     void rotate(sf::Vector2f destination);

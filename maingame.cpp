@@ -19,17 +19,12 @@ void MainGame::handleInput()
     {
         switch(event.type)
         {
-        case sf::Event::KeyPressed:
-            m_player.handleInput(event.key.code, true);
-            break;
-        case sf::Event::KeyReleased:
-            m_player.handleInput(event.key.code, false);
-            break;
         case sf::Event::Closed:
             game->window.close();
             break;
         }
     }
+    m_player.handleInput();
 }
 
 void MainGame::update(sf::Time dT)
