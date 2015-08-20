@@ -59,7 +59,15 @@ void Player::update(sf::Time dT)
     {
         rotate(movement);
         this->move(movement * dT.asSeconds());
-        m_animator.playAnimation("walking", true); // ... but don't call every update()???
+        if(!m_walking)
+            m_animator.playAnimation("walking", true);
+        m_walking = true;
+    }
+    else
+    {
+        if(m_walking)
+            m_animator.playAnimation("standing");
+        m_walking = false;
     }
 
     m_animator.update(dT);

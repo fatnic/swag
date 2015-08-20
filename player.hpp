@@ -16,6 +16,8 @@ private:
     bool m_movingDown;
     bool m_movingLeft;
     bool m_movingRight;
+    bool m_walking;
+
     sf::Texture m_texture;
     thor::FrameAnimation a_walking;
     thor::FrameAnimation a_standing;
