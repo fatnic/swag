@@ -13,6 +13,7 @@ SOURCES += main.cpp \
 
 INCLUDEPATH += $$PWD/include
 SOURCES += $$PWD/src/*.cpp
+HEADERS += $$PWD/include/*.hpp
 
 HEADERS += \
     maingame.hpp \

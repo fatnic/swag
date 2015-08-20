@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <Thor/Animations.hpp>
 
 class Player : public sf::Sprite
 {
@@ -16,4 +17,8 @@ private:
     bool m_movingLeft;
     bool m_movingRight;
     sf::Texture m_texture;
+    thor::FrameAnimation a_walking;
+    thor::FrameAnimation a_standing;
+    thor::Animator<Player, std::string> m_animator;
+    sf::Clock m_frameClock;
 };

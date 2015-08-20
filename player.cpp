@@ -1,17 +1,35 @@
 #include "player.hpp"
 #include <math.h>
 #include <iostream>
+#include <Thor/Animations.hpp>
 
 Player::Player()
     : m_playerSpeed(100.f)
     , m_texture()
+    , a_walking()
+    , a_standing()
+    , m_animator()
+    , m_frameClock()
 {
-    m_texture.loadFromFile("assets/player1.png");
+    m_texture.loadFromFile("assets/walking.png");
 
     this->setTexture(m_texture);
-    this->setOrigin(this->getGlobalBounds().width / 2, this->getGlobalBounds().height / 2);
+    this->setOrigin(40.f, 25.5f);
     this->setPosition(400, 300);
     this->setScale(0.5f, 0.5f);
+
+    a_walking.addFrame(1.f, sf::IntRect(0,   0, 80, 51));
+    a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51));
+    a_walking.addFrame(1.f, sf::IntRect(160, 0, 80, 51));
+    a_walking.addFrame(1.f, sf::IntRect(240, 0, 80, 51));
+    a_walking.addFrame(1.f, sf::IntRect(320, 0, 80, 51));
+    a_walking.addFrame(1.f, sf::IntRect(400, 0, 80, 51));
+    m_animator.addAnimation("walking", a_walking, sf::seconds(1.f));
+
+    a_standing.addFrame(1.f, sf::IntRect(0,0,80,51));
+    m_animator.addAnimation("standing", a_standing, sf::seconds(1.f));
+
+    m_animator.playAnimation("walking");
 }
 
 void Player::handleInput()
@@ -34,16 +52,22 @@ void Player::update(sf::Time dT)
     if(m_movingRight)
         movement.x += m_playerSpeed;
 
-    rotate(movement);
-    this->move(movement * dT.asSeconds());
+    if(m_movingUp || m_movingDown || m_movingLeft || m_movingRight)
+    {
+        rotate(movement);
+        this->move(movement * dT.asSeconds());
+        m_animator.playAnimation("walking");
+    }
+    else
+        m_animator.playAnimation("walking");
+
+    m_animator.animate(*this);
+    m_animator.update(dT);
 }
 
 void Player::rotate(sf::Vector2f destination)
 {
-    if(m_movingUp || m_movingDown || m_movingLeft || m_movingRight)
-    {
         float angle = std::atan2(destination.y, destination.x);
         this->setRotation((angle * 180/3.142) + 90);
-    }
 }
 
