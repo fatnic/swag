@@ -11,24 +11,24 @@ Player::Player()
     , m_animator()
     , m_frameClock()
 {
-    m_texture.loadFromFile("assets/walking.png");
+    m_texture.loadFromFile("assets/walking1.png");
 
     this->setTexture(m_texture);
-    this->setOrigin(40.f, 25.5f);
+    this->setOrigin(33.f, 25.5f);
     this->setPosition(400, 300);
     this->setScale(0.4f, 0.4f);
 
-    a_walking.addFrame(1.f, sf::IntRect(0,   0, 80, 51)); // 1
-    a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51)); // 2
-    a_walking.addFrame(1.f, sf::IntRect(160, 0, 80, 51)); // 3
-    a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51)); // 2
-    a_walking.addFrame(1.f, sf::IntRect(240, 0, 80, 51)); // 4
-    a_walking.addFrame(1.f, sf::IntRect(320, 0, 80, 51)); // 5
-    a_walking.addFrame(1.f, sf::IntRect(400, 0, 80, 51)); // 6
-    a_walking.addFrame(1.f, sf::IntRect(320, 0, 80, 51)); // 5
+    a_walking.addFrame(1.f, sf::IntRect(0,   0, 66, 51)); // 1
+    a_walking.addFrame(1.f, sf::IntRect(66,  0, 66, 51)); // 2
+    a_walking.addFrame(1.f, sf::IntRect(132, 0, 66, 51)); // 3
+    a_walking.addFrame(1.f, sf::IntRect(66,  0, 66, 51)); // 2
+    a_walking.addFrame(1.f, sf::IntRect(198, 0, 66, 51)); // 4
+    a_walking.addFrame(1.f, sf::IntRect(264, 0, 66, 51)); // 5
+    a_walking.addFrame(1.f, sf::IntRect(330, 0, 66, 51)); // 6
+    a_walking.addFrame(1.f, sf::IntRect(264, 0, 66, 51)); // 5
     m_animator.addAnimation("walking", a_walking, sf::seconds(1.f));
 
-    a_standing.addFrame(1.f, sf::IntRect(0,0,80,51));
+    a_standing.addFrame(1.f, sf::IntRect(0,0,66,51));
     m_animator.addAnimation("standing", a_standing, sf::seconds(1.f));
 
     m_animator.playAnimation("standing");
