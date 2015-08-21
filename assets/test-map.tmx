@@ -19,7 +19,7 @@
  </objectgroup>
  <objectgroup name="path">
   <object id="8" x="71" y="82">
-   <polyline points="0,0 355,38 444,245 580,193 605,405 235,315 -10,259"/>
+   <polyline points="0,0 355,38 444,245 580,193 529,396 235,315 31,277"/>
   </object>
  </objectgroup>
 </map>

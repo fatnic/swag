@@ -10,6 +10,8 @@ public:
     Guard();
     void update(sf::Time dT, std::vector<Wall> walls);
     void setTarget(sf::Vector2f target);
+    void addPatrolPoint(sf::Vector2f point);
+    void initialize();
 private:
     float m_speed;
     bool m_walking;

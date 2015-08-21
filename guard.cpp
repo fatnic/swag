@@ -25,15 +25,6 @@ Guard::Guard()
     m_animator.addAnimation("standing", a_standing, sf::seconds(1.f));
 
     m_animator.playAnimation("standing");
-
-    m_patrolPoints.push_back(sf::Vector2f(80.f, 60.f));
-    m_patrolPoints.push_back(sf::Vector2f(380.f, 100.f));
-    m_patrolPoints.push_back(sf::Vector2f(250.f, 360.f));
-    m_patrolPoints.push_back(sf::Vector2f(60.f, 280.f));
-    m_ppIt = m_patrolPoints.begin();
-
-    setTarget(*m_ppIt);
-    m_ppIt++;
 }
 
 void Guard::update(sf::Time dT, std::vector<Wall> walls)
@@ -85,5 +76,17 @@ void Guard::update(sf::Time dT, std::vector<Wall> walls)
 void Guard::setTarget(sf::Vector2f target)
 {
     m_target = target;
+}
+
+void Guard::addPatrolPoint(sf::Vector2f point)
+{
+    m_patrolPoints.push_back(point);
+}
+
+void Guard::initialize()
+{
+    m_ppIt = m_patrolPoints.begin();
+    setTarget(*m_ppIt);
+    m_ppIt++;
 }
 

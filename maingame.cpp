@@ -7,11 +7,25 @@ MainGame::MainGame(Game* game)
 {
     this->game = game;
     loadMap("test-map");
+
     for(tmx::MapLayer layer: m_mapLoader.GetLayers())
     {
         if(layer.name == "walls")
         {
            addWalls(layer.objects);
+        }
+        else if(layer.name == "path")
+        {
+            for(tmx::MapObject path: layer.objects)
+            {
+                sf::Vector2f offset(path.GetPosition());
+                for(sf::Vector2f point: path.PolyPoints())
+                {
+                    sf::Vector2f patrolPoint(point.x+offset.x, point.y+offset.y);
+                    m_guard.addPatrolPoint(patrolPoint);
+                }
+            }
+            m_guard.initialize();
         }
     }
 
