@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="8">
+ <tileset firstgid="1" name="tileset-template" tilewidth="16" tileheight="16" tilecount="256">
+  <image source="tileset-template.png" width="256" height="256"/>
+ </tileset>
+ <layer name="room" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztl7lOw0AQhpcbJB6BJoKSK2+QvAEpgSZpoYGGAhrT0NBAA5SpgBJx00XirkDirqDgeAFuKPgbK1bwOLPyrmeLrPTJmt0/Un5rfo23UynVRbACViPOTTGiyqsO1IMG0AiaQDNoAa2gDbSr/2sKbIItsA12BOrJwP9JMfQdhI8DcAiOwLFAHfSRZuj7CR+X4ApcgxuBOugjy9BnCB+P4Ak8gxeBOugjx9APED5cykeBoc8TPlzKR4qhHyN8uJSPNEPvET5cykeWoZ8jfLiUjxxDXyR8uJSPAkO/RviI6scJMAiGwHDIuel8jDP0JcJHVD/OBLSjIeem8zHN0FPzPKofFyq0tvMxz9BnCB9R/bisyt+9syHnJupu0AN6QR9DT81z6fnhv2//WU2fJ3xIzw//ffvPanpqnkvPD93aI3xIzw/dmprn0vnQrYuED+l86NbUPJfud926RPiQ7nfd2tX7uW6dIXxI97tuzb2f74K9GPu285EnfFT23wk4jbFvOx/c+/ktuIuxbzsfXoiPRbBkgHWwoXjfR3HrsHlucu2rZPJRTMBHEvkIm+cm14Xi3R/i1iXLPs5UMvk4t+zjHryCN/AOPsAn+ALf4Af8Vjnj/P7Bso/aqi1//QEnZz5j
+  </data>
+ </layer>
+ <objectgroup name="walls">
+  <object id="1" x="0" y="0" width="8" height="590"/>
+  <object id="2" x="8.5" y="455.5" width="303.5" height="135.5"/>
+  <object id="3" x="312" y="534" width="415" height="57"/>
+  <object id="4" x="727" y="8" width="60" height="584"/>
+  <object id="5" x="534" y="10" width="51" height="222"/>
+  <object id="6" x="0" y="0" width="802" height="9"/>
+  <object id="7" x="136" y="184" width="48" height="48"/>
+ </objectgroup>
+</map>
