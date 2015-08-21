@@ -7,7 +7,13 @@ MainGame::MainGame(Game* game)
 {
     this->game = game;
     loadMap("test-map");
-    addWalls();
+    for(tmx::MapLayer layer: m_mapLoader.GetLayers())
+    {
+        if(layer.name == "walls")
+        {
+           addWalls(layer.objects);
+        }
+    }
 
     m_player.setPosition(400, 300);
     m_guard.setPosition(50,50);
@@ -49,17 +55,12 @@ void MainGame::loadMap(std::string tmxfilename)
     m_mapLoader.Load(tmxfilename + ".tmx");
 }
 
-void MainGame::addWalls()
+void MainGame::addWalls(tmx::MapObjects walls)
 {
-    for(tmx::MapLayer layer: m_mapLoader.GetLayers())
+
+    for(tmx::MapObject wall: walls)
     {
-        if(layer.name == "walls")
-        {
-          for(tmx::MapObject wall: layer.objects)
-          {
-              Wall nwall(wall.GetAABB());
-              m_walls.push_back(nwall);
-          }
-        }
+        Wall nwall(wall.GetAABB());
+        m_walls.push_back(nwall);
     }
 }

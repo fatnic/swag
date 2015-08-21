@@ -20,6 +20,6 @@ private:
     Guard m_guard;
     sf::Texture m_texture;
     void loadMap(std::string tmxfilename);
-    void addWalls();
+    void addWalls(tmx::MapObjects walls);
     std::vector<Wall> m_walls;
 };
