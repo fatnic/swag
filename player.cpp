@@ -4,19 +4,19 @@
 #include <Thor/Animations.hpp>
 
 Player::Player()
-    : m_playerSpeed(55.f)
+    : m_playerSpeed(70.f)
     , m_texture()
     , a_walking()
     , a_standing()
     , m_animator()
     , m_frameClock()
 {
-    m_texture.loadFromFile("assets/walking1.png");
+    m_texture.loadFromFile("assets/player.png");
 
     this->setTexture(m_texture);
     this->setOrigin(33.f, 25.5f);
     this->setPosition(400, 300);
-    this->setScale(0.4f, 0.4f);
+    this->setScale(0.6f, 0.6f);
 
     a_walking.addFrame(1.f, sf::IntRect(0,   0, 66, 51)); // 1
     a_walking.addFrame(1.f, sf::IntRect(66,  0, 66, 51)); // 2
