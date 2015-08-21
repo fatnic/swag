@@ -4,7 +4,7 @@
 #include <Thor/Animations.hpp>
 
 Player::Player()
-    : m_playerSpeed(100.f)
+    : m_playerSpeed(55.f)
     , m_texture()
     , a_walking()
     , a_standing()
@@ -42,8 +42,9 @@ void Player::handleInput()
     m_movingRight = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
 }
 
-void Player::update(sf::Time dT)
+void Player::update(sf::Time dT, std::vector<Wall> walls)
 {
+    sf::Vector2f prevPos(this->getPosition());
     sf::Vector2f movement(0.f, 0.f);
 
     if(m_movingUp)
@@ -59,6 +60,13 @@ void Player::update(sf::Time dT)
     {
         rotate(movement);
         this->move(movement * dT.asSeconds());
+
+        for(Wall wall: walls)
+        {
+            if(this->getGlobalBounds().intersects(wall.getGlobalBounds()))
+                this->setPosition(prevPos);
+        }
+
         if(!m_walking)
             m_animator.playAnimation("walking", true);
         m_walking = true;

@@ -26,7 +26,7 @@ void MainGame::handleInput()
 
 void MainGame::update(sf::Time dT)
 {
-    m_player.update(dT);
+    m_player.update(dT, m_walls);
 }
 
 void MainGame::draw()
