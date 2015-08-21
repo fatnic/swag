@@ -16,7 +16,7 @@ Player::Player()
     this->setTexture(m_texture);
     this->setOrigin(40.f, 25.5f);
     this->setPosition(400, 300);
-    this->setScale(0.5f, 0.5f);
+    this->setScale(0.4f, 0.4f);
 
     a_walking.addFrame(1.f, sf::IntRect(0,   0, 80, 51)); // 1
     a_walking.addFrame(1.f, sf::IntRect(80,  0, 80, 51)); // 2

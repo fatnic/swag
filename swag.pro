@@ -9,11 +9,13 @@ LIBS += -lsfml-system -lsfml-window -lsfml-graphics -lz
 SOURCES += main.cpp \
     game.cpp \
     maingame.cpp \
-    player.cpp
+    player.cpp \
+    wall.cpp
 
 INCLUDEPATH += $$PWD/include
 SOURCES += $$PWD/src/*.cpp
-HEADERS += $$PWD/include/*.hpp
+HEADERS += $$PWD/include/*.hpp \
+    wall.hpp
 
 HEADERS += \
     maingame.hpp \
