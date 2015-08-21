@@ -1,10 +1,11 @@
 #pragma once
 
+#include "entity.hpp"
 #include <SFML/Graphics.hpp>
 #include <Thor/Animations.hpp>
 #include "wall.hpp"
 
-class Player : public sf::Sprite
+class Player : public Entity
 {
 public:
     Player();

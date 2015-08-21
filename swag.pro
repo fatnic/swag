@@ -10,12 +10,16 @@ SOURCES += main.cpp \
     game.cpp \
     maingame.cpp \
     player.cpp \
-    wall.cpp
+    wall.cpp \
+    entity.cpp \
+    guard.cpp
 
 INCLUDEPATH += $$PWD/include
 SOURCES += $$PWD/src/*.cpp
 HEADERS += $$PWD/include/*.hpp \
-    wall.hpp
+    wall.hpp \
+    entity.hpp \
+    guard.hpp
 
 HEADERS += \
     maingame.hpp \

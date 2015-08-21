@@ -3,10 +3,14 @@
 MainGame::MainGame(Game* game)
     : m_mapLoader("assets/")
     , m_player()
+    , m_guard()
 {
     this->game = game;
     loadMap("test-map");
     addWalls();
+
+    m_player.setPosition(400, 300);
+    m_guard.setPosition(50,50);
 }
 
 void MainGame::handleInput()
@@ -27,13 +31,15 @@ void MainGame::handleInput()
 void MainGame::update(sf::Time dT)
 {
     m_player.update(dT, m_walls);
+    m_guard.update(dT, m_walls);
 }
 
 void MainGame::draw()
 {
     game->window.draw(m_mapLoader);
-    for(Wall wall: m_walls)
-        game->window.draw(wall);
+//    for(Wall wall: m_walls)
+//        game->window.draw(wall);
+    game->window.draw(m_guard);
     game->window.draw(m_player);
     return;
 }

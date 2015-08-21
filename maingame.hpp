@@ -2,6 +2,7 @@
 
 #include "gamestate.hpp"
 #include "player.hpp"
+#include "guard.hpp"
 #include <tmx/MapLoader.h>
 #include "wall.hpp"
 #include <vector>
@@ -16,6 +17,7 @@ public:
 private:
     tmx::MapLoader m_mapLoader;
     Player m_player;
+    Guard m_guard;
     sf::Texture m_texture;
     void loadMap(std::string tmxfilename);
     void addWalls();
