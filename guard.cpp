@@ -1,7 +1,10 @@
 #include "guard.hpp"
+#include "math.h"
+#include <iostream>
 
 Guard::Guard()
     : m_walking(false)
+    , m_speed(60.f)
 {
     this->load("assets/guard.png");
 
@@ -22,11 +25,65 @@ Guard::Guard()
     m_animator.addAnimation("standing", a_standing, sf::seconds(1.f));
 
     m_animator.playAnimation("standing");
+
+    m_patrolPoints.push_back(sf::Vector2f(80.f, 60.f));
+    m_patrolPoints.push_back(sf::Vector2f(380.f, 100.f));
+    m_patrolPoints.push_back(sf::Vector2f(250.f, 360.f));
+    m_patrolPoints.push_back(sf::Vector2f(60.f, 280.f));
+    m_ppIt = m_patrolPoints.begin();
+
+    setTarget(*m_ppIt);
+    m_ppIt++;
 }
 
 void Guard::update(sf::Time dT, std::vector<Wall> walls)
 {
+    sf::Vector2f diff(this->getPosition() - m_target);
+
+    if(!m_atTarget)
+    {
+        if(!m_walking)
+        {
+            m_walking = true;
+            m_animator.playAnimation("walking", true);
+        }
+
+        sf::Vector2f movement(0.f, 0.f);
+
+        float rotation = std::atan2(diff.y, diff.x);
+        this->setRotation((rotation * 180/3.124) - 90);
+
+        movement.x = -std::cos(rotation) * m_speed;
+        movement.y = -std::sin(rotation) * m_speed;
+        this->move(movement * dT.asSeconds());
+    }
+
+    if(abs(diff.x) <= 2 && abs(diff.y) <= 2)
+    {
+        if(m_walking)
+        {
+            m_walking = false;
+            m_animator.playAnimation("standing");
+            m_waiting.restart();
+            m_atTarget = true;
+        }
+
+        if(m_waiting.getElapsedTime().asSeconds() >= 5)
+        {
+            setTarget(*m_ppIt);
+            m_ppIt++;
+            if(m_ppIt == m_patrolPoints.end())
+                m_ppIt = m_patrolPoints.begin();
+            m_atTarget = false;
+        }
+    }
+
     m_animator.update(dT);
     m_animator.animate(*this);
+}
+
+void Guard::setTarget(sf::Vector2f target)
+{
+    m_target = target;
 }
 

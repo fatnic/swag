@@ -4,7 +4,7 @@
 #include <Thor/Animations.hpp>
 
 Player::Player()
-    : m_playerSpeed(70.f)
+    : m_speed(70.f)
     , a_walking()
     , a_standing()
     , m_animator()
@@ -44,13 +44,13 @@ void Player::update(sf::Time dT, std::vector<Wall> walls)
     sf::Vector2f movement(0.f, 0.f);
 
     if(m_movingUp)
-        movement.y -= m_playerSpeed;
+        movement.y -= m_speed;
     if(m_movingDown)
-        movement.y += m_playerSpeed;
+        movement.y += m_speed;
     if(m_movingLeft)
-        movement.x -= m_playerSpeed;
+        movement.x -= m_speed;
     if(m_movingRight)
-        movement.x += m_playerSpeed;
+        movement.x += m_speed;
 
     if(m_movingUp || m_movingDown || m_movingLeft || m_movingRight)
     {

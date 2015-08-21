@@ -13,7 +13,7 @@ public:
     void update(sf::Time dT, std::vector<Wall> walls);
 private:
     void rotate(sf::Vector2f destination);
-    float m_playerSpeed;
+    float m_speed;
     bool m_movingUp;
     bool m_movingDown;
     bool m_movingLeft;

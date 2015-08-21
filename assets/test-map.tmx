@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="8">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="9">
  <tileset firstgid="1" name="tileset-template" tilewidth="16" tileheight="16" tilecount="256">
   <image source="tileset-template.png" width="256" height="256"/>
  </tileset>
@@ -16,5 +16,10 @@
   <object id="5" x="534" y="10" width="51" height="222"/>
   <object id="6" x="0" y="0" width="802" height="9"/>
   <object id="7" x="136" y="184" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup name="path">
+  <object id="8" x="71" y="82">
+   <polyline points="0,0 355,38 444,245 580,193 605,405 235,315 -10,259"/>
+  </object>
  </objectgroup>
 </map>
