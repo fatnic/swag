@@ -7,11 +7,12 @@
 class Guard : public Entity
 {
 public:
-    Guard();
+    Guard(int id);
     void update(sf::Time dT, std::vector<Wall> walls);
     void setTarget(sf::Vector2f target);
     void addPatrolPoint(sf::Vector2f point);
     void initialize();
+    int id;
 private:
     float m_speed;
     bool m_walking;

@@ -17,9 +17,9 @@ public:
 private:
     tmx::MapLoader m_mapLoader;
     Player m_player;
-    Guard m_guard;
     sf::Texture m_texture;
     void loadMap(std::string tmxfilename);
     void addWalls(tmx::MapObjects walls);
     std::vector<Wall> m_walls;
+    std::vector<Guard*> m_guards;
 };

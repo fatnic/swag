@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="9">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="14">
  <tileset firstgid="1" name="tileset-template" tilewidth="16" tileheight="16" tilecount="256">
   <image source="tileset-template.png" width="256" height="256"/>
  </tileset>
@@ -8,7 +8,7 @@
    eJztl7lOw0AQhpcbJB6BJoKSK2+QvAEpgSZpoYGGAhrT0NBAA5SpgBJx00XirkDirqDgeAFuKPgbK1bwOLPyrmeLrPTJmt0/Un5rfo23UynVRbACViPOTTGiyqsO1IMG0AiaQDNoAa2gDbSr/2sKbIItsA12BOrJwP9JMfQdhI8DcAiOwLFAHfSRZuj7CR+X4ApcgxuBOugjy9BnCB+P4Ak8gxeBOugjx9APED5cykeBoc8TPlzKR4qhHyN8uJSPNEPvET5cykeWoZ8jfLiUjxxDXyR8uJSPAkO/RviI6scJMAiGwHDIuel8jDP0JcJHVD/OBLSjIeem8zHN0FPzPKofFyq0tvMxz9BnCB9R/bisyt+9syHnJupu0AN6QR9DT81z6fnhv2//WU2fJ3xIzw//ffvPanpqnkvPD93aI3xIzw/dmprn0vnQrYuED+l86NbUPJfud926RPiQ7nfd2tX7uW6dIXxI97tuzb2f74K9GPu285EnfFT23wk4jbFvOx/c+/ktuIuxbzsfXoiPRbBkgHWwoXjfR3HrsHlucu2rZPJRTMBHEvkIm+cm14Xi3R/i1iXLPs5UMvk4t+zjHryCN/AOPsAn+ALf4Af8Vjnj/P7Bso/aqi1//QEnZz5j
   </data>
  </layer>
- <objectgroup name="walls">
+ <objectgroup color="#55ff00" name="walls" visible="0">
   <object id="1" x="0" y="0" width="8" height="590"/>
   <object id="2" x="8.5" y="455.5" width="303.5" height="135.5"/>
   <object id="3" x="312" y="534" width="415" height="57"/>
@@ -17,9 +17,12 @@
   <object id="6" x="0" y="0" width="802" height="9"/>
   <object id="7" x="136" y="184" width="48" height="48"/>
  </objectgroup>
- <objectgroup name="path">
-  <object id="8" x="71" y="82">
-   <polyline points="0,0 355,38 444,245 580,193 529,396 235,315 31,277"/>
+ <objectgroup name="paths">
+  <object id="9" name="1" x="90" y="87">
+   <polyline points="0,0 302,30 312,298 41,275"/>
+  </object>
+  <object id="13" name="2" x="685" y="51">
+   <polyline points="0,0 7,451 -89,450 -100,266"/>
   </object>
  </objectgroup>
 </map>

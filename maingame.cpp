@@ -3,10 +3,22 @@
 MainGame::MainGame(Game* game)
     : m_mapLoader("assets/")
     , m_player()
-    , m_guard()
 {
     this->game = game;
     loadMap("test-map");
+
+    Guard* guard1 = new Guard(1);
+    guard1->setPosition(50,50);
+
+    Guard* guard2 = new Guard(2);
+    guard2->setPosition(700,50);
+
+    Guard* guard3 = new Guard(3);
+    guard3->setPosition(400,500);
+
+    m_guards.push_back(guard1);
+    m_guards.push_back(guard2);
+    m_guards.push_back(guard3);
 
     for(tmx::MapLayer layer: m_mapLoader.GetLayers())
     {
@@ -14,23 +26,32 @@ MainGame::MainGame(Game* game)
         {
            addWalls(layer.objects);
         }
-        else if(layer.name == "path")
+        else if(layer.name == "paths")
         {
             for(tmx::MapObject path: layer.objects)
             {
-                sf::Vector2f offset(path.GetPosition());
-                for(sf::Vector2f point: path.PolyPoints())
+                int guard_id = std::stoi(path.GetName());
+
+                for(Guard* guard: m_guards)
                 {
-                    sf::Vector2f patrolPoint(point.x+offset.x, point.y+offset.y);
-                    m_guard.addPatrolPoint(patrolPoint);
+                    if(guard->id == guard_id)
+                    {
+                        sf::Vector2f origin(path.GetPosition());
+                        for(sf::Vector2f point: path.PolyPoints())
+                        {
+                            sf::Vector2f patrolPoint(origin.x + point.x, origin.y + point.y);
+                            guard->addPatrolPoint(patrolPoint);
+                        }
+                    }
                 }
             }
-            m_guard.initialize();
         }
     }
 
+    for(Guard* guard: m_guards)
+        guard->initialize();
+
     m_player.setPosition(400, 300);
-    m_guard.setPosition(50,50);
 }
 
 void MainGame::handleInput()
@@ -51,7 +72,8 @@ void MainGame::handleInput()
 void MainGame::update(sf::Time dT)
 {
     m_player.update(dT, m_walls);
-    m_guard.update(dT, m_walls);
+    for(Guard* guard: m_guards)
+        guard->update(dT, m_walls);
 }
 
 void MainGame::draw()
@@ -59,7 +81,9 @@ void MainGame::draw()
     game->window.draw(m_mapLoader);
 //    for(Wall wall: m_walls)
 //        game->window.draw(wall);
-    game->window.draw(m_guard);
+    for(Guard* guard: m_guards)
+        game->window.draw(*guard);
+
     game->window.draw(m_player);
     return;
 }

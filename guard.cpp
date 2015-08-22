@@ -2,8 +2,9 @@
 #include "math.h"
 #include <iostream>
 
-Guard::Guard()
+Guard::Guard(int id)
     : m_walking(false)
+    , id(id)
     , m_speed(60.f)
 {
     this->load("assets/guard.png");
@@ -49,7 +50,7 @@ void Guard::update(sf::Time dT, std::vector<Wall> walls)
         this->move(movement * dT.asSeconds());
     }
 
-    if(abs(diff.x) <= 2 && abs(diff.y) <= 2)
+    if(abs(diff.x) <= 2 && abs(diff.y) <= 1)
     {
         if(m_walking)
         {
@@ -63,8 +64,10 @@ void Guard::update(sf::Time dT, std::vector<Wall> walls)
         {
             setTarget(*m_ppIt);
             m_ppIt++;
+
             if(m_ppIt == m_patrolPoints.end())
                 m_ppIt = m_patrolPoints.begin();
+
             m_atTarget = false;
         }
     }
@@ -85,8 +88,14 @@ void Guard::addPatrolPoint(sf::Vector2f point)
 
 void Guard::initialize()
 {
+    if(m_patrolPoints.size() == 0)
+        addPatrolPoint(sf::Vector2f(this->getPosition().x, this->getPosition().y));
+
     m_ppIt = m_patrolPoints.begin();
     setTarget(*m_ppIt);
     m_ppIt++;
-}
 
+    if(m_ppIt == m_patrolPoints.end())
+        m_ppIt = m_patrolPoints.begin();
+
+}
