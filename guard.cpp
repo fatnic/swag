@@ -86,6 +86,11 @@ void Guard::addPatrolPoint(sf::Vector2f point)
     m_patrolPoints.push_back(point);
 }
 
+sf::Vector2f Guard::getFirstPatrolPoint()
+{
+    return m_patrolPoints[0];
+}
+
 void Guard::initialize()
 {
     if(m_patrolPoints.size() == 0)

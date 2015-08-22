@@ -11,6 +11,7 @@ public:
     void update(sf::Time dT, std::vector<Wall> walls);
     void setTarget(sf::Vector2f target);
     void addPatrolPoint(sf::Vector2f point);
+    sf::Vector2f getFirstPatrolPoint();
     void initialize();
     int id;
 private:

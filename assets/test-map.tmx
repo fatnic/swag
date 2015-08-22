@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="14">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" nextobjectid="19">
  <tileset firstgid="1" name="tileset-template" tilewidth="16" tileheight="16" tilecount="256">
   <image source="tileset-template.png" width="256" height="256"/>
  </tileset>
@@ -17,12 +17,12 @@
   <object id="6" x="0" y="0" width="802" height="9"/>
   <object id="7" x="136" y="184" width="48" height="48"/>
  </objectgroup>
- <objectgroup name="paths">
+ <objectgroup name="guards">
   <object id="9" name="1" x="90" y="87">
-   <polyline points="0,0 302,30 312,298 41,275"/>
+   <polyline points="0,0 112,0 236,139 92,307 -25,194"/>
   </object>
   <object id="13" name="2" x="685" y="51">
-   <polyline points="0,0 7,451 -89,450 -100,266"/>
+   <polyline points="-29,-3 -30,380 -303,450"/>
   </object>
  </objectgroup>
 </map>
