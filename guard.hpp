@@ -1,6 +1,7 @@
 #pragma once
 #include "entity.hpp"
 #include <Thor/Animations.hpp>
+#include <tmx/MapObject.h>
 #include "wall.hpp"
 #include <vector>
 
@@ -8,12 +9,11 @@ class Guard : public Entity
 {
 public:
     Guard(int id);
+    int id;
     void update(sf::Time dT, std::vector<Wall> walls);
     void setTarget(sf::Vector2f target);
-    void addPatrolPoint(sf::Vector2f point);
-    sf::Vector2f getFirstPatrolPoint();
+    void addPatrolPoints(tmx::MapObject path);
     void initialize();
-    int id;
 private:
     float m_speed;
     bool m_walking;

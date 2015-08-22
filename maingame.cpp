@@ -12,7 +12,7 @@ MainGame::MainGame(Game* game)
         if(layer.name == "walls")
             addWalls(layer.objects);
         else if(layer.name == "guards")
-            addGuard(layer.objects);
+            addGuards(layer.objects);
     }
 
     m_player.setPosition(400, 300);
@@ -67,21 +67,13 @@ void MainGame::addWalls(tmx::MapObjects walls)
     }
 }
 
-void MainGame::addGuard(tmx::MapObjects guards)
+void MainGame::addGuards(tmx::MapObjects guards)
 {
     for(tmx::MapObject path: guards)
     {
         int guard_id = std::stoi(path.GetName());
-
         Guard* guard = new Guard(guard_id);
-        sf::Vector2f origin(path.GetPosition());
-        for(sf::Vector2f point: path.PolyPoints())
-        {
-            sf::Vector2f patrolPoint(origin.x + point.x, origin.y + point.y);
-            guard->addPatrolPoint(patrolPoint);
-        }
-        guard->initialize();
-        guard->setPosition(guard->getFirstPatrolPoint());
+        guard->addPatrolPoints(path);
         m_guards.push_back(guard);
     }
 }

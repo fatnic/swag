@@ -12,6 +12,7 @@ Guard::Guard(int id)
     this->setOrigin(33.f, 25.5f);
     this->setScale(0.6f, 0.6f);
 
+    // TODO: Put all this into an animation builder class
     a_walking.addFrame(1.f, sf::IntRect(0,   0, 66, 51)); // 1
     a_walking.addFrame(1.f, sf::IntRect(66,  0, 66, 51)); // 2
     a_walking.addFrame(1.f, sf::IntRect(132, 0, 66, 51)); // 3
@@ -81,20 +82,23 @@ void Guard::setTarget(sf::Vector2f target)
     m_target = target;
 }
 
-void Guard::addPatrolPoint(sf::Vector2f point)
+void Guard::addPatrolPoints(tmx::MapObject points)
 {
-    m_patrolPoints.push_back(point);
-}
+    sf::Vector2f origin(points.GetPosition());
+    for(sf::Vector2f point: points.PolyPoints())
+    {
+        sf::Vector2f patrolPoint(origin.x + point.x, origin.y + point.y);
+        m_patrolPoints.push_back(patrolPoint);
+    }
+    initialize();
+    setPosition(m_patrolPoints[0]);
 
-sf::Vector2f Guard::getFirstPatrolPoint()
-{
-    return m_patrolPoints[0];
 }
 
 void Guard::initialize()
 {
     if(m_patrolPoints.size() == 0)
-        addPatrolPoint(sf::Vector2f(this->getPosition().x, this->getPosition().y));
+        m_patrolPoints.push_back(sf::Vector2f(this->getPosition().x, this->getPosition().y));
 
     m_ppIt = m_patrolPoints.begin();
     setTarget(*m_ppIt);
