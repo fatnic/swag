@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <stack>
+#include <iostream>
 
 #include "game.hpp"
 #include "gamestate.hpp"
@@ -41,7 +42,7 @@ void Game::gameLoop()
         if(peekState() == nullptr) continue;
         peekState()->handleInput();
         peekState()->update(dT);
-        window.clear(sf::Color(64,64,64));
+        window.clear(sf::Color::Black);
         peekState()->draw();
         window.display();
     }
