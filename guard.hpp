@@ -15,15 +15,15 @@ public:
     void addPatrolPoints(tmx::MapObject path);
     void initialize();
 private:
-    float m_speed;
-    bool m_walking;
+    float _speed;
+    bool _walking;
     thor::FrameAnimation a_walking;
     thor::FrameAnimation a_standing;
-    thor::Animator<Guard, std::string> m_animator;
-    sf::Clock m_frameClock;
-    sf::Vector2f m_target;
-    bool m_atTarget;
-    std::vector<sf::Vector2f> m_patrolPoints;
-    std::vector<sf::Vector2f>::iterator m_ppIt;
-    sf::Clock m_waiting;
+    thor::Animator<Guard, std::string> _animator;
+    sf::Clock _frameClock;
+    sf::Vector2f _target;
+    bool _atTarget;
+    std::vector<sf::Vector2f> _patrolPoints;
+    std::vector<sf::Vector2f>::iterator _ppIt;
+    sf::Clock _waiting;
 };

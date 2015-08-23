@@ -8,5 +8,5 @@ public:
     void load(std::string texturefilename);
     ~Entity();
 private:
-    sf::Texture m_texture;
+    sf::Texture _texture;
 };

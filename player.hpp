@@ -13,16 +13,16 @@ public:
     void update(sf::Time dT, std::vector<Wall> walls);
 private:
     void rotate(sf::Vector2f destination);
-    float m_speed;
-    bool m_movingUp;
-    bool m_movingDown;
-    bool m_movingLeft;
-    bool m_movingRight;
-    bool m_walking;
+    float _speed;
+    bool _movingUp;
+    bool _movingDown;
+    bool _movingLeft;
+    bool _movingRight;
+    bool _walking;
 
-    sf::Texture m_texture;
+    sf::Texture _texture;
     thor::FrameAnimation a_walking;
     thor::FrameAnimation a_standing;
-    thor::Animator<Player, std::string> m_animator;
-    sf::Clock m_frameClock;
+    thor::Animator<Player, std::string> _animator;
+    sf::Clock _frameClock;
 };

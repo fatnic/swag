@@ -1,15 +1,15 @@
 #include "entity.hpp"
 
 Entity::Entity()
-    : m_texture()
+    : _texture()
 {
 
 }
 
 void Entity::load(std::string texturefilename)
 {
-    m_texture.loadFromFile(texturefilename);
-    this->setTexture(m_texture);
+    _texture.loadFromFile(texturefilename);
+    this->setTexture(_texture);
     this->setOrigin(this->getGlobalBounds().width/2, this->getGlobalBounds().height/2);
 }
 

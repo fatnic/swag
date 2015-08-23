@@ -15,12 +15,15 @@ public:
     virtual void update(sf::Time dT);
     virtual void draw();
 private:
-    tmx::MapLoader m_mapLoader;
-    Player m_player;
-    sf::Texture m_texture;
+    tmx::MapLoader _mapLoader;
+    sf::View _view;
+    Player _player;
+    sf::Texture _texture;
     void loadMap(std::string tmxfilename);
     void addWalls(tmx::MapObjects walls);
     void addGuards(tmx::MapObjects guards);
-    std::vector<Wall> m_walls;
-    std::vector<Guard*> m_guards;
+    void setSpawnPoints(tmx::MapObjects spawns);
+    void calcView();
+    std::vector<Wall> _walls;
+    std::vector<Guard*> _guards;
 };

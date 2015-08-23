@@ -3,9 +3,9 @@
 #include <iostream>
 
 Guard::Guard(int id)
-    : m_walking(false)
+    : _walking(false)
     , id(id)
-    , m_speed(60.f)
+    , _speed(60.f)
 {
     this->load("assets/guard.png");
 
@@ -21,24 +21,24 @@ Guard::Guard(int id)
     a_walking.addFrame(1.f, sf::IntRect(264, 0, 66, 51)); // 5
     a_walking.addFrame(1.f, sf::IntRect(330, 0, 66, 51)); // 6
     a_walking.addFrame(1.f, sf::IntRect(264, 0, 66, 51)); // 5
-    m_animator.addAnimation("walking", a_walking, sf::seconds(1.f));
+    _animator.addAnimation("walking", a_walking, sf::seconds(1.f));
 
     a_standing.addFrame(1.f, sf::IntRect(0,0,66,51));
-    m_animator.addAnimation("standing", a_standing, sf::seconds(1.f));
+    _animator.addAnimation("standing", a_standing, sf::seconds(1.f));
 
-    m_animator.playAnimation("standing");
+    _animator.playAnimation("standing");
 }
 
 void Guard::update(sf::Time dT, std::vector<Wall> walls)
 {
-    sf::Vector2f diff(this->getPosition() - m_target);
+    sf::Vector2f diff(this->getPosition() - _target);
 
-    if(!m_atTarget)
+    if(!_atTarget)
     {
-        if(!m_walking)
+        if(!_walking)
         {
-            m_walking = true;
-            m_animator.playAnimation("walking", true);
+            _walking = true;
+            _animator.playAnimation("walking", true);
         }
 
         sf::Vector2f movement(0.f, 0.f);
@@ -46,40 +46,40 @@ void Guard::update(sf::Time dT, std::vector<Wall> walls)
         float rotation = std::atan2(diff.y, diff.x);
         this->setRotation((rotation * 180/3.124) - 90);
 
-        movement.x = -std::cos(rotation) * m_speed;
-        movement.y = -std::sin(rotation) * m_speed;
+        movement.x = -std::cos(rotation) * _speed;
+        movement.y = -std::sin(rotation) * _speed;
         this->move(movement * dT.asSeconds());
     }
 
     if(abs(diff.x) <= 2 && abs(diff.y) <= 1)
     {
-        if(m_walking)
+        if(_walking)
         {
-            m_walking = false;
-            m_animator.playAnimation("standing");
-            m_waiting.restart();
-            m_atTarget = true;
+            _walking = false;
+            _animator.playAnimation("standing");
+            _waiting.restart();
+            _atTarget = true;
         }
 
-        if(m_waiting.getElapsedTime().asSeconds() >= 5)
+        if(_waiting.getElapsedTime().asSeconds() >= 5)
         {
-            setTarget(*m_ppIt);
-            m_ppIt++;
+            setTarget(*_ppIt);
+            _ppIt++;
 
-            if(m_ppIt == m_patrolPoints.end())
-                m_ppIt = m_patrolPoints.begin();
+            if(_ppIt == _patrolPoints.end())
+                _ppIt = _patrolPoints.begin();
 
-            m_atTarget = false;
+            _atTarget = false;
         }
     }
 
-    m_animator.update(dT);
-    m_animator.animate(*this);
+    _animator.update(dT);
+    _animator.animate(*this);
 }
 
 void Guard::setTarget(sf::Vector2f target)
 {
-    m_target = target;
+    _target = target;
 }
 
 void Guard::addPatrolPoints(tmx::MapObject points)
@@ -88,23 +88,23 @@ void Guard::addPatrolPoints(tmx::MapObject points)
     for(sf::Vector2f point: points.PolyPoints())
     {
         sf::Vector2f patrolPoint(origin.x + point.x, origin.y + point.y);
-        m_patrolPoints.push_back(patrolPoint);
+        _patrolPoints.push_back(patrolPoint);
     }
     initialize();
-    setPosition(m_patrolPoints[0]);
+    setPosition(_patrolPoints[0]);
 
 }
 
 void Guard::initialize()
 {
-    if(m_patrolPoints.size() == 0)
-        m_patrolPoints.push_back(sf::Vector2f(this->getPosition().x, this->getPosition().y));
+    if(_patrolPoints.size() == 0)
+        _patrolPoints.push_back(sf::Vector2f(this->getPosition().x, this->getPosition().y));
 
-    m_ppIt = m_patrolPoints.begin();
-    setTarget(*m_ppIt);
-    m_ppIt++;
+    _ppIt = _patrolPoints.begin();
+    setTarget(*_ppIt);
+    _ppIt++;
 
-    if(m_ppIt == m_patrolPoints.end())
-        m_ppIt = m_patrolPoints.begin();
+    if(_ppIt == _patrolPoints.end())
+        _ppIt = _patrolPoints.begin();
 
 }
